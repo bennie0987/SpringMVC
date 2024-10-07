@@ -1,0 +1,58 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<form th:action="@{/products/update/{id}(id=${product.id})}"
+	th:object="${product}" method="post" enctype="multipart/form-data">
+	<div class="modal-header">
+		<h5 class="modal-title" id="editProductModalLabel">Edit Product</h5>
+		<button type="button" class="btn-close" data-bs-dismiss="modal"
+			aria-label="Close"></button>
+	</div>
+	<div class="modal-body">
+		<div class="container mt-4">
+			<input type="hidden" th:field="*{id}" /> <input type="hidden"
+				th:field="*{imageFileName}" id="oldImageFileName" />
+
+			<div class="mb-3">
+				<label for="name" class="form-label">Name</label> <input type="text"
+					id="name" th:field="*{name}" class="form-control" required />
+			</div>
+
+			<div class="mb-3">
+				<label for="brand" class="form-label">Brand</label> <input
+					type="text" id="brand" th:field="*{brand}" class="form-control"
+					required />
+			</div>
+
+			<div class="mb-3">
+				<label for="category" class="form-label">Category</label> <input
+					type="text" id="category" th:field="*{category}"
+					class="form-control" required />
+			</div>
+
+			<div class="mb-3">
+				<label for="price" class="form-label">Price</label> <input
+					type="number" id="price" th:field="*{price}" class="form-control"
+					step="0.01" required />
+			</div>
+
+			<div class="mb-3">
+				<label for="imageFileName" class="form-label">Image File</label> <input
+					type="file" id="imageFile" name="imageFile" class="form-control" />
+				<small class="form-text text-muted">Current image: <img
+					th:src="@{'/images/' + ${product.imageFileName}}"
+					alt="Current Image" width="100" /></small>
+			</div>
+
+			<div class="mb-3">
+				<label for="createdAt" class="form-label">Created At</label> <input
+					type="text" id="createdAt" th:field="*{createdAt}"
+					class="form-control" readonly />
+			</div>
+
+		</div>
+	</div>
+	<div class="modal-footer">
+		<button type="submit" class="btn btn-primary">Update</button>
+		<button type="button" class="btn btn-secondary"
+			data-bs-dismiss="modal">Cancel</button>
+	</div>
+</form>
